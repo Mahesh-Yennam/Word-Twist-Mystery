@@ -1,0 +1,16 @@
+{
+  "name": "Word Twist Mystery - Anagram Detective Vocabulary Puzzle",
+  "short_name": "Word Twist",
+  "description": "Unscramble letters, solve detective case files, find the 6-letter mystery key word, and expand your vocabulary in this thrilling noir anagram puzzle.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#d97706",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

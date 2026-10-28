@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFQ8M0VSFN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RFQ8M0VSFN');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Twist Mystery - Noir Anagram Detective Vocabulary Game | Gamility</title>
+  <meta name="description" content="Crack mystery case files, unscramble 6 letter anagrams, find hidden words, and test your vocabulary in Word Twist Mystery. Free to play online with zero downloads.">
+  <meta name="keywords" content="word twist, anagram game, text twist, vocabulary puzzle, detective word game, wordscapes, gamility">
+  <meta name="theme-color" content="#d97706">
+
+    <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Word Twist Mystery - Noir Anagram Detective Vocabulary Game | Gamility">
+  <meta property="og:description" content="Crack mystery case files, unscramble 6 letter anagrams, find hidden words, and test your vocabulary in Word Twist Mystery. Free to play online with zero downloads.">
+  <meta property="og:image" content="preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Word Twist Mystery - Noir Anagram Detective Vocabulary Game | Gamility">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Word Twist Mystery - Noir Anagram Detective Vocabulary Game | Gamility">
+  <meta name="twitter:description" content="Crack mystery case files, unscramble 6 letter anagrams, find hidden words, and test your vocabulary in Word Twist Mystery. Free to play online with zero downloads.">
+  <meta name="twitter:image" content="preview.png">
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Word Twist Mystery",
+    "url": "https://mahesh-yennam.github.io/Gamility/games/word-twist-mystery/",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas.",
+    "genre": ["Word Game", "Puzzle", "Educational"],
+    "description": "Noir detective themed anagram word twist puzzle game featuring responsive touch controls, procedural Web Audio SFX, and offline dictionary engine."
+  }
+  </script>
+</head>
+<body>
+  <!-- Top Gamility Ribbon for Standalone & Repos Navigation -->
+  <header class="top-nav-ribbon" role="banner">
+    <a href="https://mahesh-yennam.github.io/Gamility/" class="ribbon-brand" title="Gamility Home">
+      <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 4L4 12V28L20 36L36 28V12L20 4Z" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M20 12L12 16V24L20 28L28 24V16L20 12Z" fill="#d97706" fill-opacity="0.85"/>
+        <circle cx="20" cy="20" r="3" fill="#ffffff"/>
+      </svg>
+      <span>Gamility Arcade</span>
+    </a>
+    <a href="https://mahesh-yennam.github.io/Gamility/games.html" class="ribbon-back-btn" title="Back to All Games">
+      <span>←</span> Back to Games
+    </a>
+  </header>
+
+  <!-- Main Game Stage -->
+  <main class="game-wrapper" id="gameWrapper">
+    <!-- Header with Live HUD -->
+    <header class="arcade-header">
+      <div class="game-title-badge">
+        <h1>Word Twist Mystery</h1>
+        <span class="dossier-subtitle" id="caseTitleEl">Case #1: The Brass Pocketwatch</span>
+      </div>
+      <div class="hud-panel" aria-label="Game HUD">
+        <div class="hud-stat">
+          <span class="hud-label">Score</span>
+          <span id="scoreVal" class="hud-val stat-gold">0</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">Best</span>
+          <span id="highScoreVal" class="hud-val stat-cyan">0</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">Time</span>
+          <span id="timerVal" class="hud-val stat-timer">02:00</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">Solved</span>
+          <span id="progressVal" class="hud-val">0 / 0</span>
+        </div>
+        <div class="hud-stat key-stat-hud" id="keyCard">
+          <span class="hud-label">Cipher</span>
+          <span id="keyStatusText" class="hud-val stat-cipher">🔒 Locked</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Controls Toolbar -->
+    <div class="controls-toolbar">
+      <div class="toolbar-btn-group">
+        <button id="pauseBtn" class="tool-icon-btn" type="button" title="Pause Case Timer (Press P)">
+          <span>⏸️</span> Pause
+        </button>
+        <button id="muteBtn" class="tool-icon-btn" type="button" title="Toggle Sound">
+          <span>🔊</span> Sound
+        </button>
+        <button id="hintBtn" class="tool-icon-btn" type="button" title="Reveal Letter Hint (Press H)">
+          <span>💡</span> Hint (<span id="hintsLeftEl">3</span>)
+        </button>
+        <button id="modeToggleBtn" class="tool-icon-btn" type="button" title="Toggle Timed / Relaxed Mode">
+          <span>⏱️</span> Timed
+        </button>
+        <button id="rulesBtn" class="tool-icon-btn" type="button" title="View Guidelines">
+          <span>❓</span> Rules
+        </button>
+      </div>
+      <div class="rank-tag" id="rankTagEl">Rookie Sleuth</div>
+    </div>
+
+    <!-- Word Grid Board (Discovered Word Slots) -->
+    <section class="board-container" id="boardContainer" aria-label="Word Slots Grid">
+      <div class="word-columns-wrapper" id="wordColumnsWrapper">
+        <!-- Rendered dynamically by word length (3, 4, 5, 6 letters) -->
+      </div>
+    </section>
+
+    <!-- Feedback Message Banner -->
+    <div class="feedback-banner" id="feedbackBanner" aria-live="polite">
+      Find words of 3 to 6 letters. Uncover the 6-letter cipher to advance!
+    </div>
+
+    <!-- Active Input Tray (Current Spelled Letters) -->
+    <section class="input-tray-section" aria-label="Current Word Tray">
+      <div class="answer-tray" id="answerTray">
+        <!-- Letter tiles currently chosen by player appear here -->
+      </div>
+      <div class="tray-actions">
+        <button id="twistBtn" class="action-btn twist-btn" title="Twist / Shuffle Remaining Letters (Spacebar)">
+          <span class="btn-icon">🔀</span> Twist
+        </button>
+        <button id="submitBtn" class="action-btn submit-btn" title="Submit Word (Enter)">
+          <span class="btn-icon">↵</span> Enter
+        </button>
+        <button id="clearBtn" class="action-btn clear-btn" title="Clear Letters (C or Backspace)">
+          <span class="btn-icon">✕</span> Clear
+        </button>
+      </div>
+    </section>
+
+    <!-- Bottom Letter Rack (6 Scrambled Letter Tiles) -->
+    <section class="letter-rack-section" aria-label="Available Letter Tiles">
+      <div class="letter-rack" id="letterRack">
+        <!-- 6 Interactive letter buttons rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- In-Game Pause Overlay Screen -->
+    <div class="modal-overlay hidden" id="pauseOverlay">
+      <div class="modal-card pause-card">
+        <div class="pause-icon">⏸️</div>
+        <h2>INVESTIGATION PAUSED</h2>
+        <p>The detective case clock is halted. Catch your breath and resume when ready.</p>
+        <div class="modal-actions">
+          <button id="resumeBtn" class="primary-btn pulse-btn">▶️ Resume Case</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Start Case Modal -->
+    <div class="modal-overlay" id="startOverlay">
+      <div class="modal-card">
+        <div class="modal-stamp">CLASSIFIED</div>
+        <h2>WORD TWIST MYSTERY</h2>
+        <p class="modal-subtitle">A Noir Detective Anagram Cryptogram Challenge</p>
+        <div class="rules-summary">
+          <div class="rule-item">
+            <span class="rule-icon">🔤</span>
+            <span>Unscramble the 6 letters to uncover hidden 3, 4, 5 & 6-letter words.</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">🔑</span>
+            <span><strong>CRITICAL:</strong> You must crack at least one <strong>6-letter Master Cipher</strong> to solve the case and advance!</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">⌨️</span>
+            <span>Supports mouse, touch taps, or direct physical typing (<kbd>A-Z</kbd>, <kbd>Space</kbd> to Twist, <kbd>Enter</kbd>).</span>
+          </div>
+        </div>
+        <div class="modal-mode-selector">
+          <label class="mode-radio">
+            <input type="radio" name="gameMode" value="timed" checked>
+            <span>⏱️ Timed Case (2 Minutes)</span>
+          </label>
+          <label class="mode-radio">
+            <input type="radio" name="gameMode" value="zen">
+            <span>🧘 Zen Investigation (Untimed)</span>
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button id="startBtn" class="primary-btn pulse-btn">🕵️ Open First Case File</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Solved / Advance Modal -->
+    <div class="modal-overlay hidden" id="caseSolvedOverlay">
+      <div class="modal-card victory-card">
+        <div class="modal-stamp solved-stamp">CASE SOLVED</div>
+        <div class="victory-icon">🎉 🔍 📜</div>
+        <h2 id="victoryHeading">EXCELLENT WORK, DETECTIVE!</h2>
+        <p id="victorySubtext">You cracked the 6-letter master cipher and closed the file!</p>
+        
+        <div class="stats-summary-box">
+          <div class="summary-row">
+            <span>Master Cipher Word:</span>
+            <strong class="highlight-word" id="victoryMasterWord">------</strong>
+          </div>
+          <div class="summary-row">
+            <span>Words Discovered:</span>
+            <strong id="victoryWordsTally">0 / 0</strong>
+          </div>
+          <div class="summary-row">
+            <span>Case Score Earned:</span>
+            <strong class="highlight-score" id="victoryScoreTally">+0 pts</strong>
+          </div>
+          <div class="summary-row">
+            <span>Detective Rank:</span>
+            <strong id="victoryRankTally">Rookie Sleuth</strong>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button id="nextCaseBtn" class="primary-btn pulse-btn">📁 Open Next Case File</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Failed / Time Expired Modal -->
+    <div class="modal-overlay hidden" id="caseFailedOverlay">
+      <div class="modal-card failed-card">
+        <div class="modal-stamp failed-stamp">CASE COLD</div>
+        <div class="failure-icon">⏳ 🕵️ ❌</div>
+        <h2>THE TRAIL WENT COLD</h2>
+        <p id="failReasonText">Time ran out before cracking the 6-letter Master Cipher.</p>
+        
+        <div class="unsolved-reveal-box">
+          <div class="reveal-title">UNSOLVED CIPHER REVEAL:</div>
+          <div class="reveal-words-list" id="unsolvedWordsList"></div>
+        </div>
+
+        <div class="modal-actions">
+          <button id="retryCaseBtn" class="secondary-btn">🔄 Retry This Case</button>
+          <button id="newMysteryBtn" class="primary-btn">📁 New Case Dossier</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rules / Guidelines Modal -->
+    <div class="modal-overlay hidden" id="rulesOverlay">
+      <div class="modal-card rules-card">
+        <h2>🕵️ DETECTIVE INVESTIGATION HANDBOOK</h2>
+        <div class="rules-body">
+          <p>Welcome to the Bureau of Cryptic Investigations. Here is your protocol:</p>
+          <ul>
+            <li><strong>Objective:</strong> Form words by rearranging the 6 available letter tiles.</li>
+            <li><strong>Word Lengths:</strong> Words must be 3, 4, 5, or 6 letters long.</li>
+            <li><strong>Case Clearance:</strong> You <strong>must solve at least one 6-letter word</strong> to crack the case. Any additional words award high score multipliers!</li>
+            <li><strong>Score Values:</strong>
+              <ul>
+                <li>3-Letter Words: 100 points</li>
+                <li>4-Letter Words: 250 points</li>
+                <li>5-Letter Words: 500 points</li>
+                <li>6-Letter Master Key: 1,000 points + Bonus Case Clear Multiplier</li>
+              </ul>
+            </li>
+            <li><strong>Shortcuts:</strong>
+              <ul>
+                <li><kbd>Letters (A-Z)</kbd>: Spell words quickly</li>
+                <li><kbd>Enter</kbd>: Submit current word</li>
+                <li><kbd>Backspace</kbd> / <kbd>Delete</kbd>: Remove last letter</li>
+                <li><kbd>Space</kbd> / <kbd>S</kbd>: Twist / Shuffle rack</li>
+                <li><kbd>C</kbd>: Clear answer tray</li>
+                <li><kbd>H</kbd>: Use Hint to expose a first letter</li>
+                <li><kbd>P</kbd>: Pause game</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-actions">
+          <button id="closeRulesBtn" class="primary-btn">Got It, Detective</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructions & Investigation Guidelines Card -->
+    <section class="game-instructions-card" aria-label="Investigation Guidelines and Scoring">
+      <h3>🔍 Investigation Guidelines & Scoring Protocol</h3>
+      <div class="legend-grid">
+        <div class="legend-item">
+          <span class="legend-badge">🔑</span>
+          <div><strong>Master Cipher:</strong> You must crack at least one <strong>6-letter word</strong> (1,000 Pts) to clear the case file and unlock the next dossier!</div>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">🔀</span>
+          <div><strong>Twist / Shuffle:</strong> Press <strong>Spacebar</strong> or click <strong>Twist</strong> to 3D flip and rearrange the letters on the rack.</div>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">💡</span>
+          <div><strong>Detective Clues:</strong> Press <strong>H</strong> or click <strong>Hint</strong> to expose the first letter of an unsolved word in the case grid.</div>
+        </div>
+        <div class="legend-item">
+          <span class="legend-badge">⏱️</span>
+          <div><strong>Case Clock:</strong> In Timed Mode, every remaining second awards +10 bonus points upon solving the master cipher!</div>
+        </div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: #94a3b8; line-height: 1.5;">
+        <strong>Desktop Controls:</strong> Type letters <strong>A-Z</strong> directly on your physical keyboard. Press <strong>Enter</strong> to submit, <strong>Backspace</strong> to undo, <strong>Space</strong> to Twist, <strong>C</strong> to Clear, and <strong>P</strong> to Pause.<br>
+        <strong>Mobile Controls:</strong> Tap letter tiles into the answer tray, tap placed tiles to return them, or tap Twist / Enter buttons.
+      </p>
+    </section>
+  </main>
+
+  <script src="./game.js"></script>
+</body>
+</html>
